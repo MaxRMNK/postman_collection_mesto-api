@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "2f8924b8-10dd-457d-9066-e3a34891bacb",
+		"name": "pw-14",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26793722"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{USER_EMAIL}}\",\n    \"password\": \"{{USER_PASSWORD}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/signin",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status is CREATED\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{USER_EMAIL}}\",\n    \"password\": \"{{USER_PASSWORD}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/signup",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/me",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:ID",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{USER_NAME_MODIFIED}}\",\n    \"about\": \"{{USER_ABOUT_MODIFIED}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/me",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update avatar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"avatar\": \"{{USER_AVATAR_MODIFIED}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/me/avatar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"me",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/cards",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status is CREATED\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{CARD_NAME}}\",\n    \"link\": \"{{CARD_LINK}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/cards",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/cards/:ID",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cards",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add like",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/cards/:ID/likes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cards",
+								":ID",
+								"likes"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove like",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/cards/:ID/likes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cards",
+								":ID",
+								"likes"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "page not found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/_404_",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"_404_"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"JSON body\", function () {",
+					"    pm.response.to.have.jsonBody();",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "USER_EMAIL",
+			"value": "user@email.com",
+			"type": "string"
+		},
+		{
+			"key": "USER_PASSWORD",
+			"value": "qwerty123",
+			"type": "string"
+		},
+		{
+			"key": "USER_NAME",
+			"value": "Name",
+			"type": "string"
+		},
+		{
+			"key": "USER_ABOUT",
+			"value": "About",
+			"type": "string"
+		},
+		{
+			"key": "USER_AVATAR",
+			"value": "http://www.example.com",
+			"type": "string"
+		},
+		{
+			"key": "USER_NAME_MODIFIED",
+			"value": "Name modified",
+			"type": "string"
+		},
+		{
+			"key": "USER_ABOUT_MODIFIED",
+			"value": "About modified",
+			"type": "string"
+		},
+		{
+			"key": "USER_AVATAR_MODIFIED",
+			"value": "http://www.example.com/modified",
+			"type": "string"
+		},
+		{
+			"key": "CARD_NAME",
+			"value": "Card name",
+			"type": "string"
+		},
+		{
+			"key": "CARD_LINK",
+			"value": "http://www.example.com",
+			"type": "string"
+		}
+	]
+}
